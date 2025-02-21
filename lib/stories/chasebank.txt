@@ -1,3 +1,4 @@
+Chase Manhattan Bank;1990-1992
 Chase Manhattan Bank - Director of Advanced Technology - 1990 to 1992
 
 In the spring of 1990 I was hired as the "Director of Advanced Technology" at Chase Manhattan Bank, in the "Metropolitan Community Bank" division which managed all of their retail branch banking.  In essence, it meant that I was in charge of designing all of their systems which did not directly involve an IBM mainframe or a DEC Vax computer. (Essentially, everything in the branch and back offices which did not require general accounting ledgers as maintained for banking regulators.)

@@ -1,8 +1,9 @@
-import Link from "next/link"
-import type { Story } from "@/types/Story"
+import Link from "next/link";
+import type { Story } from "@/types/Story";
+import { formatDate } from "@/lib/formatDate";
 
 interface StoryCardProps {
-  story: Story
+  story: Story;
 }
 
 export default function StoryCard({ story }: StoryCardProps) {
@@ -15,17 +16,25 @@ export default function StoryCard({ story }: StoryCardProps) {
           <div className="w-3 h-3 rounded-full bg-green-500"></div>
         </div>
         <div className="bg-white p-4 rounded border border-gray-200">
-          <h2 className="text-xl font-mono font-semibold mb-2 truncate">{story.title}</h2>
+          <h2 className="text-xl font-mono font-semibold mb-2 truncate">
+            {story.title}
+          </h2>
           <p className="text-gray-600 text-sm mb-2 font-mono">
-            // Created: {new Date(story.date).toLocaleDateString()}
+            // Created:{" "}
+            {formatDate({
+              startDate: story.startDate,
+              endDate: story.endDate,
+            })}
           </p>
-          <p className="text-gray-700 font-mono line-clamp-3">{story.summary}</p>
+          <p className="text-gray-700 font-mono line-clamp-3">
+            {story.summary}
+          </p>
         </div>
         <div className="mt-2 text-right text-xs text-gray-500 font-mono">
-          {story.content.split("\n").length} lines | {story.content.length} characters
+          {story.content.split("\n").length} lines | {story.content.length}{" "}
+          characters
         </div>
       </div>
     </Link>
-  )
+  );
 }
-

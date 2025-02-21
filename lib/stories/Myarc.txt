@@ -1,3 +1,4 @@
+Myarc Computers Inc.;1985-1989
 Myarc Computers Inc. 1985 to 1989
 
 In my adventures with Fast-Term, I quickly hit the roadblock of low-level support for disk controllers was different across different manufacturers.  I had used a novel formatting scheme for piracy prevention which relied on the TI Floppy disk controller, not realizing until I received customer feedback that the formatting was not compatible with other vendors such as CorComp or Myarc.  I acquired floppy controllers manufactured by both Corcomp and Myarc before I pivoted away from piracy prevention and made Fast-Term one of the earliest open-source and "share-ware" applications.

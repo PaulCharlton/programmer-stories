@@ -1,11 +1,15 @@
-import StoryList from "@/components/StoryList"
+import StoryList from "@/components/StoryList";
+import { loadStories } from "@/lib/loadStories";
 
-export default function Home() {
+export default async function Home() {
+  const stories = await loadStories();
+
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8 text-center font-mono">Programmer Stories</h1>
-      <StoryList />
+      <h1 className="text-4xl font-bold mb-8 text-center font-mono">
+        Paul Charlton
+      </h1>
+      <StoryList initialStories={stories} />
     </main>
-  )
+  );
 }
-

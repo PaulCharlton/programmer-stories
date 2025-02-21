@@ -1,3 +1,4 @@
+Fast-Term;1984-1986
 Fast-Term - 1984 to 1986
 
 As noted in my writings on time at RPI, RPI would, upon request, run a 9600 baud serial port into your dorm room.  However, my personal computer at the time, a TI-99/4a only had communication software that was reliable at only at 300 baud with a handset coupler.  This motivated me to write "Fast-Term", in 100% assembler language, that was fully capable at 19200 baud.

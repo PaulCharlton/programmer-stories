@@ -14,12 +14,18 @@ export default function StoryList({ initialStories }: StoryListProps) {
 
   useEffect(() => {
     setStories((prev) =>
-      [...prev].sort((a, b) =>
-        sortBy === "coolest"
-          ? a.coolness - b.coolness
-          : new Date(b.startDate || "").getTime() -
-            new Date(a.startDate || "").getTime()
-      )
+      [...prev].sort((a, b) => {
+        if (sortBy === "coolest") {
+          return a.coolness - b.coolness;
+        }
+        // Handle cases where either date is null
+        if (!a.startDate) return 1; // null dates go to end
+        if (!b.startDate) return -1; // null dates go to end
+
+        return (
+          new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+        );
+      })
     );
   }, [sortBy]);
 
@@ -31,8 +37,8 @@ export default function StoryList({ initialStories }: StoryListProps) {
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value as "coolest" | "date")}
         >
-          <option value="date">Sort by Date</option>
           <option value="coolest">Sort by Coolness</option>
+          <option value="date">Sort by Date</option>
         </select>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -43,7 +43,6 @@ export default async function StoryPage({
                 startDate: story.startDate,
                 endDate: story.endDate,
               })}
-              // Coolness: {story.coolness}
             </div>
             {story.content.split("\n").map((line, index) => (
               <div key={index} className="flex">

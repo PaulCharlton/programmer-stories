@@ -10,13 +10,13 @@ interface StoryListProps {
 
 export default function StoryList({ initialStories }: StoryListProps) {
   const [stories, setStories] = useState<Story[]>(initialStories);
-  const [sortBy, setSortBy] = useState<"coolest" | "date">("date");
+  const [sortBy, setSortBy] = useState<"coolest" | "date">("coolest");
 
   useEffect(() => {
     setStories((prev) =>
       [...prev].sort((a, b) =>
         sortBy === "coolest"
-          ? b.coolness - a.coolness
+          ? a.coolness - b.coolness
           : new Date(b.startDate || "").getTime() -
             new Date(a.startDate || "").getTime()
       )

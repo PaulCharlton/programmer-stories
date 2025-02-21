@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import type { Story } from "@/types/Story";
+import { storyRankings } from "./storyRankings";
 
 export async function loadStories(): Promise<Story[]> {
   const storiesDir = path.join(process.cwd(), "lib/stories");
@@ -33,12 +34,10 @@ export async function loadStories(): Promise<Story[]> {
         const trimmedDate = date.trim();
         try {
           if (trimmedDate.includes("-")) {
-            // Handle date range (use the end year)
             const [startYear, endYear] = trimmedDate.split("-");
             startDate = new Date(startYear).toISOString();
             endDate = new Date(endYear).toISOString();
           } else {
-            // Handle single date
             startDate = new Date(trimmedDate).toISOString();
           }
         } catch (e) {
@@ -48,12 +47,15 @@ export async function loadStories(): Promise<Story[]> {
         }
       }
 
+      // Get coolness from story rankings (position in array + 1)
+      const coolness = storyRankings.indexOf(file) + 1 || 999;
+
       return {
         id: index + 1,
-        title: title?.trim() || file, // Fallback to filename if no title found
+        title: title?.trim() || file,
         startDate,
         endDate,
-        coolness: Math.floor(Math.random() * 100),
+        coolness,
         summary,
         content: storyContent,
         image: `/placeholder.svg?text=Story+${index + 1}`,

@@ -18,18 +18,12 @@ export async function loadStories(): Promise<Story[]> {
       // Remove the first line (metadata) from content
       const storyContent = lines.join("\n").trim();
 
-      // Use first 3 non-empty lines for summary
-      const summary = lines
-        .filter((line) => line.trim()) // Remove empty lines
-        .slice(0, 3) // Take first 3 non-empty lines
-        .join("\n")
-        .trim();
-
-      const { date, title } = storyRankings.find(
+      const { date, title, summary } = storyRankings.find(
         (ranking) => ranking.filename === file
       ) || {
         date: null,
         title: null,
+        summary: null,
       };
       // Handle date parsing
       let startDate = null;

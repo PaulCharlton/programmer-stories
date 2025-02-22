@@ -4,7 +4,7 @@ export interface Story {
   startDate: string | null;
   endDate: string | null;
   coolness: number;
-  summary: string;
+  summary: string | null;
   content: string;
   image: string;
   isMarkdown: boolean;

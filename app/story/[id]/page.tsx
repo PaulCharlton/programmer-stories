@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/formatDate";
 import { TextReader } from "@/lib/TextReader";
 import ReactMarkdown from "react-markdown";
+import rehypeSlug from "rehype-slug";
 
 async function getStory(id: string): Promise<Story> {
   const stories = await loadStories();
@@ -20,6 +21,7 @@ export default async function StoryPage({
 }) {
   const story = await getStory(params.id);
   const isMarkdown = story.isMarkdown;
+
   return (
     <main className="container mx-auto px-4 py-8">
       <Link
@@ -55,7 +57,9 @@ export default async function StoryPage({
             </div>
             {isMarkdown ? (
               <div className="prose dark:prose-invert max-w-none">
-                <ReactMarkdown>{story.content}</ReactMarkdown>
+                <ReactMarkdown rehypePlugins={[rehypeSlug]}>
+                  {story.content}
+                </ReactMarkdown>
               </div>
             ) : (
               <div>

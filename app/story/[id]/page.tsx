@@ -42,11 +42,9 @@ export default async function StoryPage({
           </h1>
         </div>
         <div className="p-4 bg-white dark:bg-gray-900">
-          {!isMarkdown && (
-            <div className="mb-6">
-              <TextReader content={story.content} />
-            </div>
-          )}
+          <div className="mb-6">
+            <TextReader content={story.content} isMarkdown={story.isMarkdown} />
+          </div>
           <div className="font-mono text-sm whitespace-pre-wrap">
             <div className="mb-4 text-gray-500 dark:text-gray-400">
               // Created:{" "}

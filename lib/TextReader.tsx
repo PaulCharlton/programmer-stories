@@ -6,21 +6,55 @@ import { Play, Pause, Square } from "lucide-react";
 
 interface TextReaderProps {
   content: string;
+  isMarkdown?: boolean;
 }
 
-export function TextReader({ content }: TextReaderProps) {
+export function TextReader({ content, isMarkdown }: TextReaderProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
+  const processContent = (text: string) => {
+    if (!isMarkdown) return text;
+
+    return (
+      text
+        // Remove markdown headers
+        .replace(/#{1,6}\s/g, "")
+        // Remove markdown links but keep text
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+        // Remove markdown bold/italic
+        .replace(/(\*\*|__)(.*?)\1/g, "$2")
+        .replace(/(\*|_)(.*?)\1/g, "$2")
+        // Remove code blocks
+        .replace(/```[\s\S]*?```/g, "")
+        .replace(/`([^`]+)`/g, "$1")
+        // Remove bullet points but add pause
+        .replace(/^\s*[-*+]\s/gm, ", ")
+        // Add pauses for better speech flow
+        .replace(/\.\s/g, ". , ")
+        .replace(/\n\n/g, ". ")
+        // Remove any remaining markdown symbols
+        .replace(/[#*_`]/g, "")
+        // Clean up multiple spaces and commas
+        .replace(/\s+/g, " ")
+        .replace(/,\s*,/g, ",")
+        .trim()
+    );
+  };
+
   useEffect(() => {
-    utteranceRef.current = new SpeechSynthesisUtterance(content);
+    const processedContent = processContent(content);
+    utteranceRef.current = new SpeechSynthesisUtterance(processedContent);
+    utteranceRef.current.rate = 0.9; // Slightly slower for better comprehension
+    utteranceRef.current.pitch = 1;
+
     return () => {
       if (utteranceRef.current) {
         speechSynthesis.cancel();
       }
     };
-  }, [content]);
+  }, [content, isMarkdown]);
 
   const play = () => {
     if (isPaused) {

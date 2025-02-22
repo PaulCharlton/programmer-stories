@@ -4,7 +4,7 @@ import type { Story } from "@/types/Story";
 import { storyRankings } from "./storyRankings";
 
 export async function loadStories(): Promise<Story[]> {
-  const storiesDir = path.join(process.cwd(), "lib/stories");
+  const storiesDir = path.join(process.cwd(), "lib/cv/stories");
   const files = await fs.readdir(storiesDir);
   const txtFiles = files.filter((file) => file.endsWith(".txt"));
 
@@ -13,20 +13,22 @@ export async function loadStories(): Promise<Story[]> {
       const content = await fs.readFile(path.join(storiesDir, file), "utf-8");
       const lines = content.split("\n");
 
-      // Parse the first line for title and date
-      const [title, date] = (lines[0] || "").split(";");
-
       // Remove the first line (metadata) from content
-      const storyContent = lines.slice(1).join("\n").trim();
+      const storyContent = lines.join("\n").trim();
 
       // Use first 3 non-empty lines for summary
       const summary = lines
-        .slice(1) // Skip metadata line
         .filter((line) => line.trim()) // Remove empty lines
         .slice(0, 3) // Take first 3 non-empty lines
         .join("\n")
         .trim();
 
+      const { date, title } = storyRankings.find(
+        (ranking) => ranking.filename === file
+      ) || {
+        date: null,
+        title: null,
+      };
       // Handle date parsing
       let startDate = null;
       let endDate = null;
@@ -47,8 +49,9 @@ export async function loadStories(): Promise<Story[]> {
         }
       }
 
-      // Get coolness from story rankings (position in array + 1)
-      const coolness = storyRankings.indexOf(file) + 1 || 999;
+      const coolness =
+        storyRankings.findIndex((ranking) => ranking.filename === file) + 1 ||
+        999;
 
       return {
         id: index + 1,

@@ -6,10 +6,12 @@ import { storyRankings } from "./storyRankings";
 export async function loadStories(): Promise<Story[]> {
   const storiesDir = path.join(process.cwd(), "lib/cv/stories");
   const files = await fs.readdir(storiesDir);
-  const txtFiles = files.filter((file) => file.endsWith(".txt"));
+  const storyFiles = files.filter(
+    (file) => file.endsWith(".txt") || file.endsWith(".md")
+  );
 
   const stories = await Promise.all(
-    txtFiles.map(async (file, index) => {
+    storyFiles.map(async (file, index) => {
       const content = await fs.readFile(path.join(storiesDir, file), "utf-8");
       const lines = content.split("\n");
 
@@ -62,6 +64,7 @@ export async function loadStories(): Promise<Story[]> {
         summary,
         content: storyContent,
         image: `/placeholder.svg?text=Story+${index + 1}`,
+        isMarkdown: file.endsWith(".md"),
       };
     })
   );

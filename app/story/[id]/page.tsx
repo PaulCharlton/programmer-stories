@@ -4,6 +4,7 @@ import { loadStories } from "@/lib/loadStories";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/formatDate";
 import { TextReader } from "@/lib/TextReader";
+import ReactMarkdown from "react-markdown";
 
 async function getStory(id: string): Promise<Story> {
   const stories = await loadStories();
@@ -18,7 +19,7 @@ export default async function StoryPage({
   params: { id: string };
 }) {
   const story = await getStory(params.id);
-
+  const isMarkdown = story.isMarkdown;
   return (
     <main className="container mx-auto px-4 py-8">
       <Link
@@ -39,9 +40,11 @@ export default async function StoryPage({
           </h1>
         </div>
         <div className="p-4 bg-white dark:bg-gray-900">
-          <div className="mb-6">
-            <TextReader content={story.content} />
-          </div>
+          {!isMarkdown && (
+            <div className="mb-6">
+              <TextReader content={story.content} />
+            </div>
+          )}
           <div className="font-mono text-sm whitespace-pre-wrap">
             <div className="mb-4 text-gray-500 dark:text-gray-400">
               // Created:{" "}
@@ -50,14 +53,22 @@ export default async function StoryPage({
                 endDate: story.endDate,
               })}
             </div>
-            {story.content.split("\n").map((line, index) => (
-              <div key={index} className="flex">
-                <span className="text-gray-400 dark:text-gray-500 mr-4 select-none w-8 text-right">
-                  {index + 1}
-                </span>
-                <span className="dark:text-gray-300">{line}</span>
+            {isMarkdown ? (
+              <div className="prose dark:prose-invert max-w-none">
+                <ReactMarkdown>{story.content}</ReactMarkdown>
               </div>
-            ))}
+            ) : (
+              <div>
+                {story.content.split("\n").map((line, index) => (
+                  <div key={index} className="flex">
+                    <span className="text-gray-400 dark:text-gray-500 mr-4 select-none w-8 text-right">
+                      {index + 1}
+                    </span>
+                    <span className="dark:text-gray-300">{line}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { loadStories } from "@/lib/loadStories";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/formatDate";
+import { TextReader } from "@/lib/TextReader";
 
 async function getStory(id: string): Promise<Story> {
   const stories = await loadStories();
@@ -36,6 +37,9 @@ export default async function StoryPage({
           <h1 className="text-lg font-mono font-semibold">{story.title}</h1>
         </div>
         <div className="p-4 bg-white">
+          <div className="mb-6">
+            <TextReader content={story.content} />
+          </div>
           <div className="font-mono text-sm whitespace-pre-wrap">
             <div className="mb-4 text-gray-500">
               // Created:{" "}

@@ -33,7 +33,7 @@ export default function StoryList({ initialStories }: StoryListProps) {
     <div>
       <div className="mb-4 flex justify-end">
         <select
-          className="border rounded p-2 font-mono bg-gray-100"
+          className="border dark:border-gray-700 rounded p-2 font-mono bg-gray-100 dark:bg-gray-800 dark:text-gray-300"
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value as "coolest" | "date")}
         >

@@ -26,7 +26,7 @@ export default function SearchBar({ stories }: SearchBarProps) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="w-full max-w-lg mx-auto flex items-center border rounded-lg px-3 py-2 text-sm hover:border-gray-400 transition-colors mb-8 text-gray-500"
+        className="w-full max-w-lg mx-auto flex items-center border dark:border-gray-700 rounded-lg px-3 py-2 text-sm hover:border-gray-400 dark:hover:border-gray-500 transition-colors mb-8 text-gray-500 dark:text-gray-400 dark:bg-gray-800"
       >
         <Search className="mr-2 h-4 w-4" />
         <span>Search stories...</span>

@@ -1,5 +1,6 @@
 import StoryList from "@/components/StoryList";
 import SearchBar from "@/components/SearchBar";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { loadStories } from "@/lib/loadStories";
 
 export default async function Home() {
@@ -12,6 +13,7 @@ export default async function Home() {
       </h1>
       <SearchBar stories={stories} />
       <StoryList initialStories={stories} />
+      <ThemeToggle />
     </main>
   );
 }

@@ -1,4 +1,5 @@
 import StoryList from "@/components/StoryList";
+import SearchBar from "@/components/SearchBar";
 import { loadStories } from "@/lib/loadStories";
 
 export default async function Home() {
@@ -9,6 +10,7 @@ export default async function Home() {
       <h1 className="text-4xl font-bold mb-8 text-center font-mono">
         Paul Charlton
       </h1>
+      <SearchBar stories={stories} />
       <StoryList initialStories={stories} />
     </main>
   );

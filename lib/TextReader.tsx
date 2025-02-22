@@ -2,6 +2,15 @@
 
 import React, { useState, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
+import { Play, Pause, Square } from "lucide-react";
 
 interface TextReaderProps {
   content: string;
@@ -13,6 +22,7 @@ export const TextReader: React.FC<TextReaderProps> = ({ content }) => {
     null
   );
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const [playbackRate, setPlaybackRate] = useState("1.0");
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   // Load available voices
@@ -39,27 +49,42 @@ export const TextReader: React.FC<TextReaderProps> = ({ content }) => {
     if (!currentVoice) return;
 
     if (isPlaying) {
-      window.speechSynthesis.cancel();
+      window.speechSynthesis.pause();
       setIsPlaying(false);
       return;
     }
 
-    utteranceRef.current = new SpeechSynthesisUtterance(content);
-    utteranceRef.current.voice = currentVoice;
-    utteranceRef.current.rate = 1;
-    utteranceRef.current.pitch = 1;
-
-    utteranceRef.current.onend = () => {
-      setIsPlaying(false);
-    };
-
-    utteranceRef.current.onerror = (event) => {
-      console.error("Speech synthesis error:", event);
-      setIsPlaying(false);
-    };
-
-    window.speechSynthesis.speak(utteranceRef.current);
+    if (!utteranceRef.current) {
+      utteranceRef.current = new SpeechSynthesisUtterance(content);
+      utteranceRef.current.voice = currentVoice;
+      utteranceRef.current.rate = parseFloat(playbackRate);
+      utteranceRef.current.onend = () => {
+        setIsPlaying(false);
+        utteranceRef.current = null;
+      };
+      utteranceRef.current.onerror = (event) => {
+        console.error("Speech synthesis error:", event);
+        setIsPlaying(false);
+        utteranceRef.current = null;
+      };
+      window.speechSynthesis.speak(utteranceRef.current);
+    } else {
+      window.speechSynthesis.resume();
+    }
     setIsPlaying(true);
+  };
+
+  const handleStop = () => {
+    window.speechSynthesis.cancel();
+    setIsPlaying(false);
+    utteranceRef.current = null;
+  };
+
+  const handleSpeedChange = (value: string) => {
+    setPlaybackRate(value);
+    if (utteranceRef.current) {
+      utteranceRef.current.rate = parseFloat(value);
+    }
   };
 
   const handleVoiceChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -68,6 +93,9 @@ export const TextReader: React.FC<TextReaderProps> = ({ content }) => {
     );
     if (selectedVoice) {
       setCurrentVoice(selectedVoice);
+      if (utteranceRef.current) {
+        handleStop();
+      }
     }
   };
 
@@ -75,17 +103,36 @@ export const TextReader: React.FC<TextReaderProps> = ({ content }) => {
     <Card>
       <CardContent className="p-4">
         <div className="flex items-center gap-4 mb-4">
-          <button
-            onClick={handlePlay}
-            className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
-          >
-            {isPlaying ? "Stop" : "Play"}
-          </button>
+          <Button variant="outline" size="icon" onClick={handlePlay}>
+            {isPlaying ? (
+              <Pause className="h-4 w-4" />
+            ) : (
+              <Play className="h-4 w-4" />
+            )}
+          </Button>
+
+          <Button variant="outline" size="icon" onClick={handleStop}>
+            <Square className="h-4 w-4" />
+          </Button>
+
+          <Select value={playbackRate} onValueChange={handleSpeedChange}>
+            <SelectTrigger className="w-[100px]">
+              <SelectValue placeholder="Speed" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="0.5">0.5x</SelectItem>
+              <SelectItem value="0.75">0.75x</SelectItem>
+              <SelectItem value="1.0">1.0x</SelectItem>
+              <SelectItem value="1.25">1.25x</SelectItem>
+              <SelectItem value="1.5">1.5x</SelectItem>
+              <SelectItem value="2.0">2.0x</SelectItem>
+            </SelectContent>
+          </Select>
 
           <select
             value={currentVoice?.name}
             onChange={handleVoiceChange}
-            className="px-3 py-2 rounded border bg-background"
+            className="px-3 py-2 rounded border bg-background ml-auto"
           >
             {voices.map((voice) => (
               <option key={voice.name} value={voice.name}>

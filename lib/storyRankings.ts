@@ -7,12 +7,17 @@ interface StoryRanking {
 
 export const storyRankings: StoryRanking[] = [
   {
+    filename: "test.md",
+    title: "Test",
+    date: "1994-1996",
+    summary: `This is a test. Please see Paul, because it has Markdown capabilities :D`,
+  },
+  {
     filename: "apple.txt",
     title: "Apple Computer Inc.",
     date: "1994-1996",
     summary: "",
   },
-  { filename: "test.md", title: "Test", date: "1994-1996", summary: "" },
   {
     filename: "deshaw.txt",
     title: "D. E. Shaw & Co.",

@@ -30,10 +30,6 @@ export default function StoryCard({ story }: StoryCardProps) {
             {story.summary}
           </p>
         </div>
-        <div className="mt-2 text-right text-xs text-gray-500 dark:text-gray-400 font-mono">
-          {story.content.split("\n").length} lines | {story.content.length}{" "}
-          characters
-        </div>
       </div>
     </Link>
   );

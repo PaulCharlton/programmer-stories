@@ -1,5 +1,6 @@
 import type { Story } from "@/types/Story";
 import Link from "next/link";
+import Image from "next/image";
 import { loadStories } from "@/lib/loadStories";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/formatDate";
@@ -20,6 +21,7 @@ export default async function StoryPage({
   params: { id: string };
 }) {
   const story = await getStory(params.id);
+  const companyLogo = `/${story.company?.file}`;
 
   return (
     <main className="container mx-auto px-4 py-8">
@@ -30,6 +32,36 @@ export default async function StoryPage({
         &larr; Back to stories
       </Link>
       <div className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+        {story.company?.file && (
+          <div className="p-4 flex justify-center bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+            {story.company?.homepage ? (
+              <a
+                href={story.company.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity hover:opacity-80"
+              >
+                <Image
+                  src={companyLogo || "/placeholder.svg"}
+                  alt="Company Logo"
+                  width={200}
+                  height={60}
+                  className="h-[60px] w-auto object-contain cursor-pointer"
+                  priority
+                />
+              </a>
+            ) : (
+              <Image
+                src={companyLogo || "/placeholder.svg"}
+                alt="Company Logo"
+                width={200}
+                height={60}
+                className="h-[60px] w-auto object-contain"
+                priority
+              />
+            )}
+          </div>
+        )}
         <div className="bg-gray-200 dark:bg-gray-700 p-2 flex items-center">
           <div className="flex items-center mr-4">
             <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>

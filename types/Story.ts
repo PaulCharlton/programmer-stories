@@ -7,5 +7,4 @@ export interface Story {
   summary: string | null;
   content: string;
   image: string;
-  isMarkdown: boolean;
 }

@@ -6,17 +6,14 @@ import { Play, Pause, Square } from "lucide-react";
 
 interface TextReaderProps {
   content: string;
-  isMarkdown?: boolean;
 }
 
-export function TextReader({ content, isMarkdown }: TextReaderProps) {
+export function TextReader({ content }: TextReaderProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   const processContent = (text: string) => {
-    if (!isMarkdown) return text;
-
     return (
       text
         // Remove markdown headers
@@ -46,7 +43,7 @@ export function TextReader({ content, isMarkdown }: TextReaderProps) {
   useEffect(() => {
     const processedContent = processContent(content);
     utteranceRef.current = new SpeechSynthesisUtterance(processedContent);
-    utteranceRef.current.rate = 0.9; // Slightly slower for better comprehension
+    utteranceRef.current.rate = 0.9;
     utteranceRef.current.pitch = 1;
 
     return () => {
@@ -54,7 +51,7 @@ export function TextReader({ content, isMarkdown }: TextReaderProps) {
         speechSynthesis.cancel();
       }
     };
-  }, [content, isMarkdown]);
+  }, [content]);
 
   const play = () => {
     if (isPaused) {

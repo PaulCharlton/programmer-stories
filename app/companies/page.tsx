@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Companies } from "@/lib/companies";
 import { loadStories } from "@/lib/loadStories";
 import { Story } from "@/types/Story";
+import BackButton from "@/components/BackButton";
 
 export default async function CompaniesPage() {
   const stories = await loadStories();
@@ -25,6 +26,7 @@ export default async function CompaniesPage() {
 
   return (
     <main className="container mx-auto px-4 py-8">
+      <BackButton href="/" label="Back to stories" />
       <h1 className="text-4xl font-bold mb-8 text-center font-mono">
         Companies
       </h1>
@@ -73,7 +75,7 @@ export default async function CompaniesPage() {
                   {companyStories.get(company.name).map((story: Story) => (
                     <Link
                       key={story.id}
-                      href={`/story/${story.id}`}
+                      href={`/story/${story.id}?from=companies`}
                       className="block text-blue-500 dark:text-blue-400 hover:underline"
                     >
                       {story.title}

@@ -7,6 +7,7 @@ import { formatDate } from "@/lib/formatDate";
 import { TextReader } from "@/lib/TextReader";
 import ReactMarkdown from "react-markdown";
 import rehypeSlug from "rehype-slug";
+import BackButton from "@/components/BackButton";
 
 async function getStory(id: string): Promise<Story> {
   const stories = await loadStories();
@@ -17,20 +18,21 @@ async function getStory(id: string): Promise<Story> {
 
 export default async function StoryPage({
   params,
+  searchParams,
 }: {
   params: { id: string };
+  searchParams: { from?: string };
 }) {
   const story = await getStory(params.id);
   const companyLogo = `/${story.company?.file}`;
 
+  const backLink = searchParams.from === "companies" ? "/companies" : "/";
+  const backLabel =
+    searchParams.from === "companies" ? "Back to companies" : "Back to stories";
+
   return (
     <main className="container mx-auto px-4 py-8">
-      <Link
-        href="/"
-        className="text-blue-500 dark:text-blue-400 hover:underline mb-4 inline-block"
-      >
-        &larr; Back to stories
-      </Link>
+      <BackButton href={backLink} label={backLabel} />
       <div className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
         {story.company?.file && (
           <div className="p-4 flex justify-center bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">

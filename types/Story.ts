@@ -1,3 +1,5 @@
+import { Company } from "@/lib/companies";
+
 export interface Story {
   id: number;
   title: string;
@@ -7,4 +9,5 @@ export interface Story {
   summary: string | null;
   content: string;
   image: string;
+  company: Company | undefined;
 }

@@ -18,7 +18,7 @@ export async function loadStories(): Promise<Story[]> {
       // Remove the first line (metadata) from content
       const storyContent = lines.join("\n").trim();
 
-      const { date, title, summary } = storyRankings.find(
+      const { date, title, summary, company } = storyRankings.find(
         (ranking) => ranking.filename === file
       ) || {
         date: null,
@@ -59,6 +59,7 @@ export async function loadStories(): Promise<Story[]> {
         content: storyContent,
         image: `/placeholder.svg?text=Story+${index + 1}`,
         isMarkdown: file.endsWith(".md"),
+        company,
       };
     })
   );

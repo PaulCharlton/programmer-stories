@@ -24,6 +24,13 @@ export const storyRankings: StoryRanking[] = [
     company: Companies["D. E. Shaw"],
   },
   {
+    filename: "Intuit.md",
+    title: "Intuit",
+    date: "2005-2007",
+    summary: "",
+    company: Companies["Intuit"],
+  },
+  {
     filename: "chasebank.md",
     title: "Chase Manhattan Bank",
     date: "1990-1992",
@@ -35,7 +42,7 @@ export const storyRankings: StoryRanking[] = [
     title: "University of Virginia School of Medicine",
     date: "1979-1986",
     summary: "",
-    company: undefined, // Not in Companies list
+    company: Companies["University of Virginia"],
   },
   {
     filename: "JavaSoft.md",
@@ -43,6 +50,13 @@ export const storyRankings: StoryRanking[] = [
     date: "1997",
     summary: "",
     company: Companies["Sun Microsystems"], // JavaSoft was a Sun Microsystems division
+  },
+  {
+    filename: "JavaFX.md",
+    title: "JavaFX",
+    date: "2008",
+    summary: "",
+    company: Companies["Oracle Corporation"],
   },
   {
     filename: "beyondnews.md",
@@ -70,7 +84,7 @@ export const storyRankings: StoryRanking[] = [
     title: "Netflix Prize Competition",
     date: "2008",
     summary: "",
-    company: undefined, // Not in Companies list
+    company: Companies.Netflix,
   },
   {
     filename: "cisco_ios.md",
@@ -78,6 +92,27 @@ export const storyRankings: StoryRanking[] = [
     date: "2008",
     summary: "",
     company: Companies.Cisco,
+  },
+  {
+    filename: "rpi.md",
+    title: "RPI - 'Knowledge and Thoroughness'",
+    date: "1984-1988",
+    summary: "",
+    company: Companies["Rensselaer Polytechnic Institute"],
+  },
+  {
+    filename: "resultsbyiq.md",
+    title: "SGI/Cray Division",
+    date: "2014",
+    summary: "",
+    company: Companies["Hewlett-Packard"],
+  },
+  {
+    filename: "valueclick.md",
+    title: "ValueClick",
+    date: "2012",
+    summary: "",
+    company: undefined,
   },
   {
     filename: "fastterm.md",
@@ -112,7 +147,7 @@ export const storyRankings: StoryRanking[] = [
     title: "Compuserve TIFORUM",
     date: "1983-1990",
     summary: "",
-    company: undefined, // Not in Companies list
+    company: Companies["CompuServe"],
   },
   {
     filename: "cyber currency 101.md",
@@ -209,20 +244,6 @@ export const storyRankings: StoryRanking[] = [
     filename: "PaperRoute.md",
     title: "Paper Route",
     date: "1976-1983",
-    summary: "",
-    company: undefined, // Not in Companies list
-  },
-  {
-    filename: "rpi.md",
-    title: "RPI - 'Knowledge and Thoroughness'",
-    date: "1984-1988",
-    summary: "",
-    company: Companies["Rensselaer Polytechnic Institute"],
-  },
-  {
-    filename: "resultsbyiq.md",
-    title: "SGI/Cray Division",
-    date: "Unknown",
     summary: "",
     company: undefined, // Not in Companies list
   },

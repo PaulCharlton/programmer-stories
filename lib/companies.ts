@@ -17,7 +17,11 @@ export type CompanyName =
   | "Stanford University"
   | "Sun Microsystems"
   | "University of Chicago"
-  | "United States of America";
+  | "United States of America"
+  | "Oracle Corporation"
+  | "University of Virginia"
+  | "Netflix"
+  | "CompuServe";
 
 export interface Company {
   name: CompanyName;
@@ -116,5 +120,25 @@ export const Companies: Record<CompanyName, Company> = {
     name: "United States of America",
     file: "usa.svg",
     homepage: "https://www.usa.gov",
+  },
+  "Oracle Corporation": {
+    name: "Oracle Corporation",
+    file: "oracle.svg",
+    homepage: "https://www.oracle.com",
+  },
+  "University of Virginia": {
+    name: "University of Virginia",
+    file: "uva.svg",
+    homepage: "https://www.virginia.edu",
+  },
+  Netflix: {
+    name: "Netflix",
+    file: "netflix.svg",
+    homepage: "https://www.netflix.com",
+  },
+  CompuServe: {
+    name: "CompuServe",
+    file: "compuserve.svg",
+    homepage: "https://www.compuserve.com",
   },
 };

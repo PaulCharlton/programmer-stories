@@ -10,18 +10,18 @@ interface StoryRanking {
 
 export const storyRankings: StoryRanking[] = [
   {
-    filename: "chasebank.md",
-    title: "Chase Manhattan Bank",
-    date: "1990-1992",
-    summary: "",
-    company: Companies["J.P. Morgan"],
-  },
-  {
     filename: "deshaw.md",
     title: "D. E. Shaw & Co.",
     date: "1992-1994",
     summary: "",
     company: Companies["D. E. Shaw"],
+  },
+  {
+    filename: "chasebank.md",
+    title: "Chase Manhattan Bank",
+    date: "1990-1992",
+    summary: "",
+    company: Companies["J.P. Morgan"],
   },
   {
     filename: "apple.md",

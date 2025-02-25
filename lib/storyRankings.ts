@@ -10,11 +10,11 @@ interface StoryRanking {
 
 export const storyRankings: StoryRanking[] = [
   {
-    filename: "apple.md",
-    title: "Apple Computer Inc.",
-    date: "1994-1996",
+    filename: "chasebank.md",
+    title: "Chase Manhattan Bank",
+    date: "1990-1992",
     summary: "",
-    company: Companies.Apple,
+    company: Companies["J.P. Morgan"],
   },
   {
     filename: "deshaw.md",
@@ -24,18 +24,18 @@ export const storyRankings: StoryRanking[] = [
     company: Companies["D. E. Shaw"],
   },
   {
+    filename: "apple.md",
+    title: "Apple Computer Inc.",
+    date: "1994-1996",
+    summary: "",
+    company: Companies.Apple,
+  },
+  {
     filename: "Intuit.md",
     title: "Intuit",
     date: "2005-2007",
     summary: "",
     company: Companies["Intuit"],
-  },
-  {
-    filename: "chasebank.md",
-    title: "Chase Manhattan Bank",
-    date: "1990-1992",
-    summary: "",
-    company: Companies["J.P. Morgan"], // Assuming Chase is now J.P. Morgan
   },
   {
     filename: "UVA.md",

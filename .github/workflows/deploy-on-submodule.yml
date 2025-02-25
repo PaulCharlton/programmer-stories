@@ -3,6 +3,7 @@ name: Deploy on Submodule Update
 on:
   repository_dispatch:
     types: [cv-submodule-update]
+  workflow_dispatch:
 
 jobs:
   deploy:

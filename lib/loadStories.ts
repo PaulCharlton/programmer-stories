@@ -2,7 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import type { Story } from "@/types/Story";
 import { storyRankings } from "./storyRankings";
-const IdMap = require("./cv/story_id.json");
+import { IdMap } from "./cv/story_id";
 
 export async function loadStories(): Promise<Story[]> {
   const storiesDir = path.join(process.cwd(), "lib/cv/stories");

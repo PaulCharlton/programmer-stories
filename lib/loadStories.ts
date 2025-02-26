@@ -57,7 +57,7 @@ export async function loadStories(): Promise<Story[]> {
       }
 
       return {
-        id,
+        id: String(id),
         title: title?.trim() || file,
         startDate,
         endDate,

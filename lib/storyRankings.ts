@@ -31,6 +31,20 @@ export const storyRankings: StoryRanking[] = [
     company: Companies.Apple,
   },
   {
+    filename: "JavaSoft.md",
+    title: "JavaSoft",
+    date: "1997",
+    summary: "",
+    company: Companies["Sun Microsystems"], // JavaSoft was a Sun Microsystems division
+  },
+  {
+    filename: "cisco_ios.md",
+    title: "Cisco",
+    date: "2008",
+    summary: "",
+    company: Companies.Cisco,
+  },
+  {
     filename: "Intuit.md",
     title: "Intuit",
     date: "2005-2007",
@@ -38,18 +52,18 @@ export const storyRankings: StoryRanking[] = [
     company: Companies["Intuit"],
   },
   {
+    filename: "hewlettpackard.md",
+    title: "Hewlett-Packard",
+    date: "1988-1990",
+    summary: "",
+    company: Companies["Hewlett-Packard"],
+  },
+  {
     filename: "UVA.md",
     title: "University of Virginia School of Medicine",
     date: "1979-1986",
     summary: "",
     company: Companies["University of Virginia"],
-  },
-  {
-    filename: "JavaSoft.md",
-    title: "JavaSoft",
-    date: "1997",
-    summary: "",
-    company: Companies["Sun Microsystems"], // JavaSoft was a Sun Microsystems division
   },
   {
     filename: "JavaFX.md",
@@ -73,25 +87,11 @@ export const storyRankings: StoryRanking[] = [
     company: undefined, // Not in Companies list
   },
   {
-    filename: "hewlettpackard.md",
-    title: "Hewlett-Packard",
-    date: "1988-1990",
-    summary: "",
-    company: Companies["Hewlett-Packard"],
-  },
-  {
     filename: "netflix_prize.md",
     title: "Netflix Prize Competition",
     date: "2008",
     summary: "",
     company: Companies.Netflix,
-  },
-  {
-    filename: "cisco_ios.md",
-    title: "Cisco",
-    date: "2008",
-    summary: "",
-    company: Companies.Cisco,
   },
   {
     filename: "rpi.md",

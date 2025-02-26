@@ -1,0 +1,10 @@
+name: Webhook Listener
+on:
+  repository_dispatch:
+    types: [custom_event] # This allows external events to trigger the workflow
+jobs:
+  handle_webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log Event
+        run: echo "Received Webhook: ${{ github.event.client_payload.message }}"

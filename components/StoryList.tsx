@@ -23,7 +23,7 @@ export default function StoryList({ initialStories }: StoryListProps) {
         if (!b.startDate) return -1; // null dates go to end
 
         return (
-          new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+          new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
         );
       })
     );

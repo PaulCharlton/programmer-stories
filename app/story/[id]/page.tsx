@@ -11,7 +11,7 @@ import BackButton from "@/components/BackButton";
 
 async function getStory(id: string): Promise<Story> {
   const stories = await loadStories();
-  const story = stories.find((s) => s.id === Number(id));
+  const story = stories.find((s) => s.id === id);
   if (!story) notFound();
   return story;
 }

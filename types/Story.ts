@@ -1,7 +1,7 @@
 import { Company } from "@/lib/companies";
 
 export interface Story {
-  id: number;
+  id: string;
   title: string;
   startDate: string | null;
   endDate: string | null;

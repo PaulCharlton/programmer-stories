@@ -7,4 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Log Event
-        run: echo "Received Webhook: ${{ github.event.client_payload.message }}"
+        run: echo "hello world"

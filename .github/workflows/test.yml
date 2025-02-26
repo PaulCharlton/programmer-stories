@@ -2,6 +2,8 @@ name: Webhook Listener
 on:
   repository_dispatch:
     types: [custom_event] # This allows external events to trigger the workflow
+  push:
+    branches: [main]
 jobs:
   handle_webhook:
     runs-on: ubuntu-latest

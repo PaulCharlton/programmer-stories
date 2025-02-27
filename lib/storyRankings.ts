@@ -10,6 +10,13 @@ interface StoryRanking {
 
 export const storyRankings: StoryRanking[] = [
   {
+    filename: "introduction.md",
+    title: "Introduction",
+    date: "Unknown",
+    summary: "",
+    company: undefined, // Not in Companies list
+  },
+  {
     filename: "deshaw.md",
     title: "D. E. Shaw & Co.",
     date: "1992-1994",

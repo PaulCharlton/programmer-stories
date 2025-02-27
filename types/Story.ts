@@ -1,4 +1,4 @@
-import { Company } from "@/lib/companies";
+import { Companies } from "@/lib/cv/metadata/company";
 
 export interface Story {
   id: string;
@@ -9,5 +9,5 @@ export interface Story {
   summary: string | null;
   content: string;
   image: string;
-  company: Company | undefined;
+  company: Companies | undefined;
 }

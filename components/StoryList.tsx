@@ -16,6 +16,10 @@ export default function StoryList({ initialStories }: StoryListProps) {
     setStories((prev) =>
       [...prev].sort((a, b) => {
         if (sortBy === "coolest") {
+          // If coolness is equal, use id as tiebreaker
+          if (b.coolness === a.coolness) {
+            return a.id.localeCompare(b.id);
+          }
           return b.coolness - a.coolness;
         }
         // Handle cases where either date is null

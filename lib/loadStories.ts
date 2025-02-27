@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import type { Story } from "@/types/Story";
-import { StoryMap } from "./cv/metadata/story";
+import { StoryMap } from "./cv/metadata/story_id";
 
 export async function loadStories(): Promise<Story[]> {
   const storiesDir = path.join(process.cwd(), "lib/cv/stories");

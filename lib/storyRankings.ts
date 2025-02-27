@@ -12,7 +12,7 @@ export const storyRankings: StoryRanking[] = [
   {
     filename: "introduction.md",
     title: "Introduction",
-    date: "Unknown",
+    date: "1975-2025",
     summary: "",
     company: undefined, // Not in Companies list
   },

@@ -16,7 +16,7 @@ export default function StoryList({ initialStories }: StoryListProps) {
     setStories((prev) =>
       [...prev].sort((a, b) => {
         if (sortBy === "coolest") {
-          return a.coolness - b.coolness;
+          return b.coolness - a.coolness;
         }
         // Handle cases where either date is null
         if (!a.startDate) return 1; // null dates go to end

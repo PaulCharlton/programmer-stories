@@ -1,8 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import type { Story } from "@/types/Story";
-import { storyRankings } from "./storyRankings";
-import { IdMap } from "./cv/story_id";
+import { StoryMap } from "./cv/metadata/story";
 
 export async function loadStories(): Promise<Story[]> {
   const storiesDir = path.join(process.cwd(), "lib/cv/stories");
@@ -18,14 +17,11 @@ export async function loadStories(): Promise<Story[]> {
 
       // Remove the first line (metadata) from content
       const storyContent = lines.join("\n").trim();
-
-      const { date, title, summary, company } = storyRankings.find(
-        (ranking) => ranking.filename === file
-      ) || {
-        date: null,
-        title: null,
-        summary: null,
-      };
+      const story = StoryMap[file];
+      if (!story) {
+        return null;
+      }
+      const { date, title, summary, company } = story;
       // Handle date parsing
       let startDate = null;
       let endDate = null;
@@ -46,11 +42,9 @@ export async function loadStories(): Promise<Story[]> {
         }
       }
 
-      const coolness =
-        storyRankings.findIndex((ranking) => ranking.filename === file) + 1 ||
-        999;
+      const coolness = story.coolness;
 
-      const id = (IdMap as any)[file];
+      const id = story.id;
 
       if (!id) {
         return null;

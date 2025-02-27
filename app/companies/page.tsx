@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Companies } from "@/lib/companies";
+import { Companies } from "@/lib/cv/metadata/company";
 import { loadStories } from "@/lib/loadStories";
 import { Story } from "@/types/Story";
 import BackButton from "@/components/BackButton";

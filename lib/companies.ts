@@ -17,7 +17,7 @@ export type CompanyName =
   | "Stanford University"
   | "Sun Microsystems"
   | "University of Chicago"
-  | "United States of America"
+  | "U.S. Department of Homeland Security"
   | "Oracle Corporation"
   | "University of Virginia"
   | "Netflix"
@@ -116,10 +116,10 @@ export const Companies: Record<CompanyName, Company> = {
     file: "uchicago.svg",
     homepage: "https://www.uchicago.edu",
   },
-  "United States of America": {
-    name: "United States of America",
+  "U.S. Department of Homeland Security": {
+    name: "U.S. Department of Homeland Security",
     file: "usa.svg",
-    homepage: "https://www.usa.gov",
+    homepage: "https://www.dhs.gov/",
   },
   "Oracle Corporation": {
     name: "Oracle Corporation",

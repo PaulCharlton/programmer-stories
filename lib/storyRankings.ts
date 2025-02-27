@@ -108,6 +108,13 @@ export const storyRankings: StoryRanking[] = [
     company: Companies["Rensselaer Polytechnic Institute"],
   },
   {
+    filename: "USCGAux.md",
+    title: "U.S. Department of Homeland Security",
+    date: "2010-2014",
+    summary: "",
+    company: Companies["U.S. Department of Homeland Security"],
+  },
+  {
     filename: "netflix_prize.md",
     title: "Netflix",
     date: "2008",

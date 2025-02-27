@@ -9,5 +9,5 @@ export interface Story {
   summary: string | null;
   content: string;
   image: string;
-  company: Companies | undefined;
+  company: Company | undefined;
 }

@@ -87,7 +87,32 @@ export default async function StoryPage({
               })}
             </div>
             <div className="prose dark:prose-invert max-w-none">
-              <ReactMarkdown rehypePlugins={[rehypeSlug]}>
+              <ReactMarkdown
+                rehypePlugins={[rehypeSlug]}
+                components={{
+                  p: ({ node, ...props }) => (
+                    <p className="my-1 leading-normal" {...props} />
+                  ),
+                  h1: ({ node, ...props }) => (
+                    <h1 className="mt-3 mb-1 text-2xl font-bold" {...props} />
+                  ),
+                  h2: ({ node, ...props }) => (
+                    <h2
+                      className="mt-2 mb-1 text-xl font-semibold"
+                      {...props}
+                    />
+                  ),
+                  ul: ({ node, ...props }) => (
+                    <ul className="my-1 pl-4 list-disc" {...props} />
+                  ),
+                  ol: ({ node, ...props }) => (
+                    <ol className="my-1 pl-4 list-decimal" {...props} />
+                  ),
+                  li: ({ node, ...props }) => (
+                    <li className="my-0.5" {...props} />
+                  ),
+                }}
+              >
                 {story.content}
               </ReactMarkdown>
             </div>

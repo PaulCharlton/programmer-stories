@@ -26,6 +26,15 @@ export function TextReader({ content }: TextReaderProps) {
         // Remove code blocks
         .replace(/```[\s\S]*?```/g, "")
         .replace(/`([^`]+)`/g, "$1")
+        // Flatten markdown tables: drop the alignment row, speak cells in order
+        .replace(/^\s*\|[\s:|-]+\|\s*$/gm, "")
+        .replace(/^\s*\|(.+)\|\s*$/gm, (_match, row) =>
+          row
+            .split("|")
+            .map((cell: string) => cell.trim())
+            .filter(Boolean)
+            .join(", ") + ". "
+        )
         // Remove bullet points but add pause
         .replace(/^\s*[-*+]\s/gm, ", ")
         // Add pauses for better speech flow

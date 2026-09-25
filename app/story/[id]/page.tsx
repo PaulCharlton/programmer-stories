@@ -7,6 +7,7 @@ import { formatDate } from "@/lib/formatDate";
 import { TextReader } from "@/lib/TextReader";
 import ReactMarkdown from "react-markdown";
 import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
 import BackButton from "@/components/BackButton";
 
 async function getStory(id: string): Promise<Story> {
@@ -88,8 +89,35 @@ export default async function StoryPage({
             </div>
             <div className="prose dark:prose-invert max-w-none">
               <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeSlug]}
                 components={{
+                  table: ({ node, ...props }) => (
+                    <div className="my-3 overflow-x-auto whitespace-normal">
+                      <table
+                        className="w-full table-auto border-collapse text-left align-top text-xs"
+                        {...props}
+                      />
+                    </div>
+                  ),
+                  thead: ({ node, ...props }) => (
+                    <thead
+                      className="bg-gray-100 dark:bg-gray-800"
+                      {...props}
+                    />
+                  ),
+                  th: ({ node, ...props }) => (
+                    <th
+                      className="border border-gray-300 px-2 py-1 align-bottom font-semibold dark:border-gray-600"
+                      {...props}
+                    />
+                  ),
+                  td: ({ node, ...props }) => (
+                    <td
+                      className="border border-gray-300 px-2 py-1 align-top dark:border-gray-600"
+                      {...props}
+                    />
+                  ),
                   p: ({ node, ...props }) => (
                     <p className="my-1 leading-normal" {...props} />
                   ),
